@@ -1,1 +1,2 @@
 # EasyBlog
+Easy blog
