@@ -1,31 +1,59 @@
-html {
-  font-size: 14px;
+:root {
+    --links-primary-color: white; /* Primary color */
+    --links-primary-hover-color: #0056b3; /* Darker shade for hover */
+    --links-primary-active-color: #004085; /* Even darker shade for active */
+    --links-background-color: #e9ecef; /* Light background */
+    --links-active-background-color: #d6d8db; /* Slightly darker background for active */
+    --links-focus-outline-color: #0056b3; /* Custom focus outline */
+    --background-color: #333
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+.top-bar {
+    background-color: var(--background-color); /* Ensure sufficient contrast with text */
+    color: white;
 }
 
 nav a {
-  padding: 10px 10px;
-  /*margin: 5px;*/
-  min-width: 100px;
-  min-height: 20px;
-  display: inline-block;
-  text-align: center;
+    color: var(--links-primary-color);
+    text-decoration: none;
+    padding: 10px 10px;
+    display: inline-block;
+    text-align: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--links-primary-hover-color);
+    background-color: var(--links-background-color);
+    outline: none;
+}
+
+nav a:active {
+    color: var(--links-primary-active-color);
+    background-color: var(--links-active-background-color);
+}
+
+nav a:focus-visible {
+    outline: 2px dashed var(--links-focus-outline-color);
+    outline-offset: 2px;
+}
+
+.content {
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 0 10px;
+    }
+
+    .content {
+    }
+}
+
+footer {
+    background-color: var(--background-color);
+    color: white;
+    padding: 10px;
+    text-align: center;
 }

@@ -6,40 +6,23 @@
     <meta name="description" content="@ViewData["Description"]">
     <title>@ViewData["Title"] - EasyBlog</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-    @* <link rel="stylesheet" href="~/EasyBlog.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
-<header>
+
+<header class="top-bar">
     <nav>
-        <div>
-            <a asp-area="" asp-controller="Home" asp-action="Index">EasyBlog</a>
-            <div>
-                <ul>
-                    <li>
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <a asp-area="" asp-controller="Home" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Home</a>
+        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </nav>
 </header>
-<div>
-    <main role="main">
-        @RenderBody()
-    </main>
-</div>
+
+<main role="main" class="content">
+    @RenderBody()
+</main>
 
 <footer>
-    <p>
-        &copy; 2024 - EasyBlog - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </p>
+    &copy; 2024 - EasyBlog
 </footer>
-@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
