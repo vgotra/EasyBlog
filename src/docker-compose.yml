@@ -1,0 +1,6 @@
+﻿services:
+  easyblog:
+    image: easyblog
+    build:
+      context: .
+      dockerfile: EasyBlog/Dockerfile
