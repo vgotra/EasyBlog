@@ -1,6 +1,6 @@
 namespace EasyBlog.Models;
 
-public class PostsRequest : BaseRequest
+public class PostsInputModel : BaseInputModel
 {
     public string? Search { get; set; }
 }

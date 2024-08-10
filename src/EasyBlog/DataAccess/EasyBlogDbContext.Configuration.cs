@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-
 namespace EasyBlog.DataAccess;
 
 public partial class EasyBlogDbContext
@@ -17,18 +15,12 @@ public partial class EasyBlogDbContext
             entity.Property(e => e.ReadableUrl).IsRequired().HasMaxLength(2048);
         });
 
+        //TODO Add check for providers
         modelBuilder.Model.GetEntityTypes().ToList()
             .ForEach(e =>
             {
                 e.SetSchema(DbSchemaName);
                 e.GetForeignKeys().ToList().ForEach(x => x.DeleteBehavior = DeleteBehavior.NoAction);
-
-                var createdDate = e.FindProperty(nameof(PostEntity.CreatedDate));
-                if (createdDate != null && createdDate.ClrType == typeof(DateTimeOffset))
-                {
-                    createdDate.ValueGenerated = ValueGenerated.OnAdd;
-                    createdDate.SetDefaultValueSql("GETUTCDATE()");
-                }
             });
     }
 }

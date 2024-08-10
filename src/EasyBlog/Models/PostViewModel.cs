@@ -1,6 +1,6 @@
 namespace EasyBlog.Models;
 
-public class PostResponse
+public class PostViewModel
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
