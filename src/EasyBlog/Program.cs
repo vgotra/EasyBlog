@@ -1,10 +1,12 @@
 using System.IO.Compression;
+using EasyBlog;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
 
 builder.Services.AddResponseCompression(options =>
 {

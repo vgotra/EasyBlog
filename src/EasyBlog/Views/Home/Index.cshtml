@@ -1,22 +1,12 @@
-﻿@{
+﻿@model PostsResponse
+
+@{
     ViewData["Title"] = "Home Page";
     ViewData["Description"] = "Home Page";
 }
 
-<h1>Welcome</h1>
-
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et lorem nec erat vulputate fringilla. Vestibulum rhoncus id magna a suscipit. Nam vitae nibh nec lacus ullamcorper pellentesque. Nulla auctor cursus augue eget pellentesque. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin tristique lacus libero, nec tristique augue mollis vitae. Nunc non ligula magna. Praesent mattis elit non ligula ultrices, eu vehicula tellus venenatis. Quisque magna felis, laoreet non condimentum in, ultricies et est. Suspendisse aliquet turpis consequat, accumsan augue vitae, aliquet turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi id blandit turpis.
-</p>
-<p>
-    Nunc ultrices nunc eu mollis vehicula. Suspendisse dapibus justo at ex vehicula, eleifend volutpat nisi commodo. Nulla id nibh ultricies sem lacinia cursus id eu felis. Nulla eros tellus, varius a augue at, posuere placerat leo. Pellentesque lacinia fringilla neque hendrerit consequat. Sed ligula mi, suscipit nec ornare eget, mattis quis libero. Donec arcu diam, pulvinar fringilla lectus in, feugiat ornare ex.
-</p>
-<p>
-    Maecenas bibendum neque non lacus pellentesque tempus. Praesent maximus neque at porta suscipit. Curabitur gravida tincidunt sodales. Donec pretium rhoncus lacus, quis imperdiet neque feugiat ac. Etiam commodo justo at odio sollicitudin, ac tempus nibh semper. Duis et orci interdum, volutpat nibh nec, viverra diam. Pellentesque sit amet rutrum metus. Vivamus scelerisque velit vitae augue vehicula pretium. Aenean quis viverra arcu. Integer porttitor vitae turpis eu laoreet. Aliquam id sem ut metus pulvinar consectetur. Suspendisse ultricies lacus non eros suscipit, ut pulvinar felis placerat. Maecenas sit amet convallis leo.
-</p>
-<p>
-    Nullam at lorem ac quam varius rutrum. Suspendisse faucibus, sapien sed accumsan auctor, lorem elit aliquam enim, non consequat dui eros non neque. Curabitur at velit ac ligula sagittis luctus eu et turpis. Vivamus vitae fermentum nibh, vel condimentum erat. Morbi tincidunt leo in turpis tempor, vitae vehicula dui dapibus. Morbi venenatis est ligula, at eleifend nibh cursus vitae. Donec tincidunt bibendum nunc et viverra. Pellentesque mollis enim quis tincidunt consectetur. Nam vel commodo libero, at lacinia ligula. Ut hendrerit tincidunt quam, quis vestibulum lectus tincidunt ut. Sed commodo quam at tempus aliquam. Duis vitae euismod enim.
-</p>
-<p>
-    Suspendisse accumsan auctor tellus vel luctus. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris dapibus nibh in risus egestas, nec congue mauris lobortis. Ut eu nulla sapien. In hac habitasse platea dictumst. Pellentesque vel venenatis dui, vel fermentum orci. Morbi et nibh nec est aliquet varius non a elit. Donec eleifend massa non sem efficitur, nec sodales elit volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas et placerat velit. Vestibulum eleifend ipsum lectus, et efficitur erat lobortis vitae. Nullam vitae tortor eu nunc venenatis venenatis. Aliquam eu porttitor est.
-</p>
+@foreach (var post in Model.Posts)
+{
+    <h2>@post.Title</h2>
+    <p>@post.Content</p>
+}
