@@ -1,7 +1,8 @@
 // Global using directives
 
 global using System.Diagnostics;
-global using System.Linq.Expressions;
+global using EasyBlog;
+global using EasyBlog.Common;
 global using EasyBlog.DataAccess;
 global using EasyBlog.DataAccess.Entities;
 global using EasyBlog.DataAccess.Repositories;

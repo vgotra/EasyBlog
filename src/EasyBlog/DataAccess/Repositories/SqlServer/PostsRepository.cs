@@ -1,4 +1,4 @@
-namespace EasyBlog.DataAccess.Repositories;
+namespace EasyBlog.DataAccess.Repositories.SqlServer;
 
 public class PostsRepository(EasyBlogDbContext dbContext) : IPostsRepository
 {
@@ -6,7 +6,7 @@ public class PostsRepository(EasyBlogDbContext dbContext) : IPostsRepository
     {
         var posts = await dbContext.Posts.AsNoTracking()
             .Where(x => x.IsPublished)
-            .ApplySorting(inputModel)
+            .OrderByDescending(x => x.CreatedDate)
             .ApplyPaging(inputModel)
             .ToListAsync(cancellationToken);
 

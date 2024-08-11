@@ -1,29 +1,13 @@
-using System.IO.Compression;
-using EasyBlog;
-using Microsoft.AspNetCore.ResponseCompression;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
-
-builder.Services.AddResponseCompression(options =>
-{
-    options.Providers.Add<BrotliCompressionProvider>();
-    options.Providers.Add<GzipCompressionProvider>();
-    options.EnableForHttps = true;
-});
-
-builder.Services.Configure<BrotliCompressionProviderOptions>(options => options.Level = CompressionLevel.Fastest);
-builder.Services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.SmallestSize);
+builder.Host.ConfigureServices((context, services) => services.ConfigureCompression(context));
+builder.Services.AddControllersWithViews();
 
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-8.0#localhost-testing
-// "ASPNETCORE_URLS" : "http://*:80/;http://*:8080/;https://*:443/;https://*:8081/",
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -39,11 +23,8 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseResponseCompression();
 app.UseRouting();
-
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
