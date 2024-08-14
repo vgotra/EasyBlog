@@ -1,6 +1,6 @@
-namespace EasyBlog.DataAccess;
+namespace EasyBlog.DataAccess.PostgresSql;
 
-public partial class EasyBlogDbContext
+public partial class EasyBlogDbContextBasePostgresSql
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

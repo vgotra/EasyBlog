@@ -2,6 +2,15 @@
 
 ## EF Core Specific
 
+### Migrations for Multiple providers
+
+```shell
+dotnet ef migrations add InitialCreate --context EasyBlogDbContextPostgresSql --output-dir Migrations/MigrationsPostgresSql -- --EasyBlog:DatabaseProvider PostgresSql
+dotnet ef migrations add InitialCreate --context EasyBlogDbContextSqlServer --output-dir Migrations/MigrationsSqlServer -- --EasyBlog:DatabaseProvider SqlServer
+```
+
+### Compiled Models
+
 EF Core Compiled Models can be enabled later with:
 
 ```shell

@@ -1,4 +1,4 @@
-namespace EasyBlog.DataAccess.Repositories;
+namespace EasyBlog.DataAccess;
 
 public interface IPostsRepository
 {

@@ -1,7 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
-builder.Host.ConfigureServices((context, services) => services.ConfigureCompression(context));
 builder.Services.AddControllersWithViews();
 
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-8.0#localhost-testing
