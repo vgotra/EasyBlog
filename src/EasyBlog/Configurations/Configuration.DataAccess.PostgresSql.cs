@@ -8,7 +8,7 @@ public static class ConfigurationDataAccessPostgresSql
     {
         var configuration = context.Configuration;
 
-        services.AddDbContextPool<EasyBlogDbContextBase, EasyBlogDbContextBasePostgresSql>(options =>
+        services.AddDbContextPool<EasyBlogDbContextBase, EasyBlogDbContextPostgresSql>(options =>
             _ = options.UseNpgsql(configuration.GetConnectionString("DefaultConnectionPostgresSql")));
 
         services.AddScoped<IPostsRepository, PostsRepositoryPostgresSql>();

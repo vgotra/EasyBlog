@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.SqlServer;
 
-public partial class EasyBlogDbContextBaseSqlServer
+public partial class EasyBlogDbContextSqlServer
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
