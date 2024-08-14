@@ -13,12 +13,11 @@ public static class Startup
 
         services.AddDbContextPool<EasyBlogDbContext>(options => _ = provider switch
         {
+            //INFO for prod can be useful to enable CompiledModels: //.UseModel(DataAccess.Compiledmodels.EasyBlogDbContextModel.Instance)
             SupportedDatabaseProviders.PostgresSql => options
-                .UseNpgsql(configuration.GetConnectionString("DefaultConnectionPostgresSql"))
-                .UseModel(DataAccess.Compiledmodels.EasyBlogDbContextModel.Instance), //TODO Check for compiled models
+                .UseNpgsql(configuration.GetConnectionString("DefaultConnectionPostgresSql")),
             // SupportedDatabaseProviders.SqlServer => options
-            //     .UseSqlServer(configuration.GetConnectionString("DefaultConnectionSqlServer"))
-            //     .UseModel(DataAccess.Compiledmodels.EasyBlogDbContextModel.Instance),
+            //     .UseSqlServer(configuration.GetConnectionString("DefaultConnectionSqlServer")),
             _ => throw new Exception($"Unsupported provider: {provider}")
         });
 

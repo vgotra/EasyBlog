@@ -12,7 +12,7 @@ public partial class EasyBlogDbContext
             entity.Property(e => e.IsPublished).IsRequired();
             entity.Property(e => e.ReadableUrl).IsRequired().HasMaxLength(2048);
 
-            entity.HasMany(e => e.Tags).WithMany(e => e.Posts);
+            entity.HasMany(e => e.Tags).WithMany(e => e.Posts).UsingEntity("PostsTags");;
         });
 
         modelBuilder.Entity<TagsEntity>(entity =>
@@ -23,8 +23,6 @@ public partial class EasyBlogDbContext
 
             entity.HasMany(e => e.Posts).WithMany(e => e.Tags);
         });
-
-        //TODO Don't forget to add many to many nice relation :)))
 
         //TODO Add check for providers
         modelBuilder.Model.GetEntityTypes().ToList()
