@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.SqlServer;
 
-public class TagsRepositorySqlServer(EasyBlogDbContextBase dbContext) : ITagsRepository
+public class TagsRepositorySqlServer(EasyBlogDbContextSqlServer dbContext) : ITagsRepository
 {
     public async Task<List<TagsEntity>> GetAllAsync(CancellationToken cancellationToken)
     {

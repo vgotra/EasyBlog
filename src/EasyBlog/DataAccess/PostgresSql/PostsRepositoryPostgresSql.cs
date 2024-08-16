@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.PostgresSql;
 
-public class PostsRepositoryPostgresSql(EasyBlogDbContextBase dbContext) : IPostsRepository
+public class PostsRepositoryPostgresSql(EasyBlogDbContextPostgresSql dbContext) : IPostsRepository
 {
     public async Task<(List<PostEntity> Posts, int Total)> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {

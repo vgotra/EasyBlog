@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.PostgresSql;
 
-public class TagsRepositoryPostgresSql(EasyBlogDbContextBase dbContext) : ITagsRepository
+public class TagsRepositoryPostgresSql(EasyBlogDbContextPostgresSql dbContext) : ITagsRepository
 {
     public async Task<List<TagsEntity>> GetAllAsync(CancellationToken cancellationToken)
     {
