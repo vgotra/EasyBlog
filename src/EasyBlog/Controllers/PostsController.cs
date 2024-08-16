@@ -1,6 +1,8 @@
 namespace EasyBlog.Controllers;
 
-public class HomeController(IPostsRepository postsRepository) : Controller
+[AllowAnonymous]
+[OutputCache]
+public class PostsController(IPostsRepository postsRepository) : Controller
 {
     public async Task<IActionResult> Index([FromQuery] PostsInputModel? request, CancellationToken cancellationToken = default)
     {

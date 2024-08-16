@@ -1,6 +1,10 @@
+using EasyBlog.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
+builder.Services.ConfigureCors();
+builder.Services.ConfigureCaching();
 builder.Services.AddControllersWithViews();
 
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-8.0#localhost-testing
@@ -20,10 +24,13 @@ app.UseStaticFiles(new StaticFileOptions
     OnPrepareResponse = ctx => ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=3600")
 });
 
+app.UseCors();
 app.UseResponseCompression();
 app.UseRouting();
+app.UseOutputCache();
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "Admin", pattern: "{area:exists}/{controller=Management}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Posts}/{action=Index}/{id?}");
 
 app.Run();

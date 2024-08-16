@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="@ViewData["Description"]">
     <title>@ViewData["Title"] - EasyBlog</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
@@ -11,8 +10,9 @@
 
 <header class="top-bar">
     <nav>
-        <a asp-area="" asp-controller="Management" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Home</a>
-        <a asp-area="" asp-controller="Management" asp-action="Privacy">Privacy</a>
+        <a asp-area="Admin" asp-controller="Management" asp-action="Index">Management Area</a>
+        <a asp-area="Admin" asp-controller="PostsManagement" asp-action="Index">Posts Management</a>
+        <a asp-area="Admin" asp-controller="SettingsManagement" asp-action="Index">Settings Management</a>
     </nav>
 </header>
 
