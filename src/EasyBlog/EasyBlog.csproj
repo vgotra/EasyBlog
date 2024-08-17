@@ -39,11 +39,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="8.0.8" />
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="8.1.0" />
     <PackageReference Include="Riok.Mapperly" Version="3.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <AdditionalFiles Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
   </ItemGroup>
   
 </Project>

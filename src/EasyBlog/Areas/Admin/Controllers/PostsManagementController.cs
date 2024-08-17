@@ -1,7 +1,6 @@
 ﻿namespace EasyBlog.Areas.Admin.Controllers;
 
-[Area("Admin")]
-public class PostsManagementController : Controller
+public class PostsManagementController : AdminControllerBase
 {
     public async Task<IActionResult> Index()
     {

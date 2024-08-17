@@ -11,8 +11,9 @@
 
 <header class="top-bar">
     <nav>
-        <a asp-area="" asp-controller="Management" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Home</a>
-        <a asp-area="" asp-controller="Management" asp-action="Privacy">Privacy</a>
+        <a asp-area="" asp-controller="Posts" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Home</a>
+        <a asp-area="" asp-controller="Posts" asp-action="Privacy">Privacy</a>
+        @await Html.PartialAsync("_LoginPartial")
     </nav>
 </header>
 

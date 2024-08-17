@@ -4,6 +4,8 @@ namespace EasyBlog;
 
 public static class Startup
 {
+    //TODO Move to configuration and simplify
+
     public static void ConfigureServices(this IServiceCollection services, HostBuilderContext context)
     {
         var configuration = context.Configuration;

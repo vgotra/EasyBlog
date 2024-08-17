@@ -3,9 +3,11 @@ using EasyBlog.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
+builder.Host.ConfigureServices((context, services) => services.ConfigureAuth(context));
 builder.Services.ConfigureCors();
 builder.Services.ConfigureCaching();
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3?view=aspnetcore-8.0#localhost-testing
 
@@ -28,9 +30,13 @@ app.UseCors();
 app.UseResponseCompression();
 app.UseRouting();
 app.UseOutputCache();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(name: "Admin", pattern: "{area:exists}/{controller=Management}/{action=Index}/{id?}");
 app.MapControllerRoute(name: "default", pattern: "{controller=Posts}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
