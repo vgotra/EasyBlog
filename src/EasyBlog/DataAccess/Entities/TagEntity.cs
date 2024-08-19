@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.Entities;
 
-public class TagsEntity : Entity<Guid>
+public class TagEntity : Entity<Guid>
 {
     public string Name { get; set; } = string.Empty;
 

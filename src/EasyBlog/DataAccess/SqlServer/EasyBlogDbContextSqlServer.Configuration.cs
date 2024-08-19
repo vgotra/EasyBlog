@@ -15,7 +15,7 @@ public partial class EasyBlogDbContextSqlServer
             entity.HasMany(e => e.Tags).WithMany(e => e.Posts).UsingEntity("PostsTags");;
         });
 
-        modelBuilder.Entity<TagsEntity>(entity =>
+        modelBuilder.Entity<TagEntity>(entity =>
         {
             entity.ToTable("Tags").HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired().HasMaxLength(255);

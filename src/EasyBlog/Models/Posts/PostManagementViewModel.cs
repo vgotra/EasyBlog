@@ -1,7 +1,10 @@
-namespace EasyBlog.DataAccess.Entities;
+using EasyBlog.Models.Tags;
 
-public class PostEntity : Entity<Guid>
+namespace EasyBlog.Models.Posts;
+
+public class PostManagementViewModel
 {
+    public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public bool IsPublished { get; set; } = false;
@@ -9,5 +12,5 @@ public class PostEntity : Entity<Guid>
     public DateTimeOffset? PublishOnDate { get; set; }
     public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
 
-    public List<TagEntity> Tags { get; } = [];
+    public List<TagViewModel> Tags { get; } = [];
 }

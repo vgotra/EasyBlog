@@ -7,6 +7,8 @@ At Linux: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-encrypted
 
 Example for MS Sql Server:
 
+NOTE: Replace `***` with your password, also on Linux replace **"** with  **'**
+
 ```shell
 dotnet user-secrets set "ConnectionStrings:DefaultConnectionSqlServer" "Server=server.local;Database=EasyBlogDb;MultipleActiveResultSets=true;User Id=sa;Password=***;TrustServerCertificate=true;Encrypt=false"
 ```

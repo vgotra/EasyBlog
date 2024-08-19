@@ -4,7 +4,6 @@ public class SettingsManagementController : AdminControllerBase
 {
     public async Task<IActionResult> Index()
     {
-        await Task.CompletedTask;
-        return View();
+        return await Task.FromResult(View());
     }
 }

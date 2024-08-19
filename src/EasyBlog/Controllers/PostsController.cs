@@ -2,14 +2,13 @@ namespace EasyBlog.Controllers;
 
 [AllowAnonymous]
 [OutputCache]
-public class PostsController(IPostsRepository postsRepository) : Controller
+public class PostsController(IPostsService postsService) : Controller
 {
     public async Task<IActionResult> Index([FromQuery] PostsInputModel? request, CancellationToken cancellationToken = default)
     {
         //TODO Add View Components later
         var postsRequest = request ?? new();
-        var (posts, total) = await postsRepository.GetPostsAsync(postsRequest, cancellationToken);
-        var model = postsRequest.ToListViewModel(posts, total);
+        var model = await postsService.GetPostsAsync(postsRequest, cancellationToken);
         return View(model);
     }
 

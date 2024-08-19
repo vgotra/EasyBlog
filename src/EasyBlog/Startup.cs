@@ -21,6 +21,10 @@ public static class Startup
         else
             throw new Exception($"Unsupported provider: {provider}");
 
+        services.AddScoped<IPostsService, PostsService>();
+        services.AddScoped<IPostsManagementService, PostsManagementService>();
+        services.AddScoped<ITagsService, TagsService>();
+
         services.ConfigureCompression(context);
     }
 }

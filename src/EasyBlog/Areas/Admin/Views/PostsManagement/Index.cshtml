@@ -1,5 +1,56 @@
-﻿@{
+﻿@model EasyBlog.Models.Posts.PostManagementListViewModel
+
+@{
     ViewData["Title"] = "Posts Management";
 }
 
-<h1>Welcome to the Posts Management</h1>
+<h1 class="title is-4 my-4">Welcome to the Posts Management</h1>
+
+<form method="get" asp-action="Index" class="field is-grouped mb-4">
+    <div class="control">
+        <input type="text" name="searchQuery" value="@Model.SearchQuery" class="input" placeholder="Search"/>
+    </div>
+    <div class="control">
+        <button type="submit" class="button is-primary">Search</button>
+    </div>
+</form>
+
+<table class="table is-striped is-fullwidth">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Is Published</th>
+        <td>Created Date</td>
+        <td>Publish On Date</td>
+        <td>Readable Url</td>
+        <td>Tags</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var post in Model.Posts)
+    {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.Content</td>
+            <td>
+                <input type="checkbox" disabled checked="@post.IsPublished"/>
+            </td>
+            <td>@post.CreatedDate.ToString("g")</td>
+            <td>@post.PublishOnDate?.ToString("g")</td>
+            <td>@post.ReadableUrl</td>
+            <td></td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous @(Model.PageNumber == 1 ? "is-disabled" : "")" href="?page=@(Model.PageNumber - 1)&searchQuery=@Model.SearchQuery">Previous</a>
+    <a class="pagination-next @(Model.PageNumber == Model.TotalRecords ? "is-disabled" : "")" href="?page=@(Model.PageNumber + 1)&searchQuery=@Model.SearchQuery">Next</a>
+    <ul class="pagination-list">
+        <li>
+            <span class="pagination-ellipsis">Page @Model.PageNumber of @Model.TotalRecords</span>
+        </li>
+    </ul>
+</nav>
