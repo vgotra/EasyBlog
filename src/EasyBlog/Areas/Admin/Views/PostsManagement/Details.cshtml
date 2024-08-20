@@ -8,11 +8,20 @@
 
 <div class="content">
     <p>@Model.Content</p>
-    <p><strong>Is Published:</strong> @Model.IsPublished</p>
-    <p><strong>Created Date:</strong> @Model.CreatedDate.ToString("g")</p>
-    <p><strong>Publish On Date:</strong> @Model.PublishOnDate?.ToString("g")</p>
-    <p><strong>Readable Url:</strong> @Model.ReadableUrl</p>
-    <p><strong>Tags:</strong> @string.Join(", ", Model.Tags.Select(x => x.Name))
+    <p>
+        <strong>Is Published:</strong> @Model.IsPublished
+    </p>
+    <p>
+        <strong>Created Date:</strong> @Model.CreatedDate.ToString("g")
+    </p>
+    <p>
+        <strong>Publish On Date:</strong> @Model.PublishOnDate?.ToString("g")
+    </p>
+    <p>
+        <strong>Readable Url:</strong> @Model.ReadableUrl
+    </p>
+    <p>
+        <strong>Tags:</strong> @string.Join(", ", Model.Tags.Select(x => x.Name))
     </p>
 </div>
 

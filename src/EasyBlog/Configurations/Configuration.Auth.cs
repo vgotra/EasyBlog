@@ -8,30 +8,13 @@ public static class ConfigurationAuth
 {
     public static void ConfigureAuth(this IServiceCollection services, HostBuilderContext context)
     {
-        var configuration = context.Configuration;
-        var provider = configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.PostgresSql);
+        var provider = context.Configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.PostgresSql);
 
         //TODO Add some styles for auth UI
         if (provider == SupportedDatabaseProviders.PostgresSql)
-        {
-            services.AddDbContextPool<IdentityDbContextPostgresSql>(options =>
-                _ = options.UseNpgsql(configuration.GetConnectionString("DefaultConnectionPostgresSql")));
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContextPostgresSql>()
-                .AddDefaultTokenProviders()
-                .AddDefaultUI();
-        }
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<EasyBlogDbContextPostgresSql>().AddDefaultTokenProviders().AddDefaultUI();
         else if (provider == SupportedDatabaseProviders.SqlServer)
-        {
-            services.AddDbContextPool<IdentityDbContextSqlServer>(options =>
-                _ = options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionSqlServer")));
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContextSqlServer>()
-                .AddDefaultTokenProviders()
-                .AddDefaultUI();
-        }
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<EasyBlogDbContextSqlServer>().AddDefaultTokenProviders().AddDefaultUI();
 
         services.ConfigureApplicationCookie(options =>
         {

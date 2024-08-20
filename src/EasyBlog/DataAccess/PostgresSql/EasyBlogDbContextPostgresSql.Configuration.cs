@@ -4,6 +4,8 @@ public partial class EasyBlogDbContextPostgresSql
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<PostEntity>(entity =>
         {
             entity.ToTable("Posts").HasKey(e => e.Id);
@@ -12,7 +14,8 @@ public partial class EasyBlogDbContextPostgresSql
             entity.Property(e => e.IsPublished).IsRequired();
             entity.Property(e => e.ReadableUrl).IsRequired().HasMaxLength(2048);
 
-            entity.HasMany(e => e.Tags).WithMany(e => e.Posts).UsingEntity("PostsTags");;
+            entity.HasMany(e => e.Tags).WithMany(e => e.Posts).UsingEntity("PostsTags");
+            ;
         });
 
         modelBuilder.Entity<TagEntity>(entity =>

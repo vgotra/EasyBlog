@@ -1,6 +1,6 @@
 ﻿namespace EasyBlog.Areas.Admin.Controllers;
 
-public partial class PostsManagementController(IPostsManagementService service) : AdminControllerBase
+public class PostsManagementController(IPostsManagementService service) : AdminControllerBase
 {
     public async Task<IActionResult> Index([FromQuery] PostsInputModel? model, CancellationToken cancellationToken = default)
     {
@@ -57,9 +57,9 @@ public partial class PostsManagementController(IPostsManagementService service) 
         return View(model);
     }
 
-    [HttpPost, ActionName("Delete")]
+    [HttpDelete]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken = default)
     {
         await service.DeletePostAsync(id, cancellationToken);
         return RedirectToAction(nameof(Index));

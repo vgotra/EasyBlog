@@ -7,14 +7,16 @@ public static partial class ModelsMappingExtensions
 {
     public static partial PostViewModel? ToModel(this PostEntity? entity);
 
-    public static PostListViewModel ToListViewModel(this PostsInputModel model, List<PostEntity> posts, int totalRecords) =>
-        new()
+    public static PostListViewModel ToListViewModel(this PostsInputModel model, List<PostEntity> posts, int totalRecords)
+    {
+        return new PostListViewModel
         {
             Posts = posts.Select(x => x.ToModel()).Where(x => x != null).ToList()!,
             PageNumber = model.PageNumber,
             PageSize = model.PageSize,
-            TotalRecords = totalRecords,
+            TotalRecords = totalRecords
         };
+    }
 
     public static partial TagViewModel? ToModel(this TagEntity? entity);
 }

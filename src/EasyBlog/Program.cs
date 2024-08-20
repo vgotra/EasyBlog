@@ -34,8 +34,8 @@ app.UseOutputCache();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "Admin", pattern: "{area:exists}/{controller=Management}/{action=Index}/{id?}");
-app.MapControllerRoute(name: "default", pattern: "{controller=Posts}/{action=Index}/{id?}");
+app.MapControllerRoute("Admin", "{area:exists}/{controller=Management}/{action=Index}/{id?}");
+app.MapControllerRoute("default", "{controller=Posts}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
