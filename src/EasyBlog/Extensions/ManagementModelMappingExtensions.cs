@@ -15,4 +15,6 @@ public static partial class ManagementModelMappingExtensions
             TotalRecords = totalRecords,
             SearchQuery = model.SearchQuery
         };
+
+    public static partial PostEntity ToEntity(this PostManagementViewModel entity);
 }

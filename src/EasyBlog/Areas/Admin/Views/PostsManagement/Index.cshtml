@@ -15,6 +15,12 @@
     </div>
 </form>
 
+<div class="field is-grouped mb-4">
+    <div class="control">
+        <a class="button is-primary" asp-action="Create">Create New Post</a>
+    </div>
+</div>
+
 <table class="table is-striped is-fullwidth">
     <thead>
     <tr>
@@ -25,6 +31,7 @@
         <td>Publish On Date</td>
         <td>Readable Url</td>
         <td>Tags</td>
+        <td>Actions</td>
     </tr>
     </thead>
     <tbody>
@@ -40,6 +47,11 @@
             <td>@post.PublishOnDate?.ToString("g")</td>
             <td>@post.ReadableUrl</td>
             <td></td>
+            <td>
+                <a class="button is-small is-info" asp-action="Details" asp-route-id="@post.Id">View</a>
+                <a class="button is-small is-warning" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                <a class="button is-small is-danger" asp-action="Delete" asp-route-id="@post.Id">Delete</a> @*//TODO Add confirmation modal *@
+            </td>
         </tr>
     }
     </tbody>

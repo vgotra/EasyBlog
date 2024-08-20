@@ -16,13 +16,25 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
         return post.ToManagementModel();
     }
 
-    public Task AddPostAsync(PostEntity post, CancellationToken cancellationToken)
+    public async Task CreatePostAsync(PostManagementViewModel post, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        //TODO Validate tags, etc
+        var entity = post.ToEntity();
+        dbContext.Posts.Add(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public Task UpdatePostAsync(PostEntity post, CancellationToken cancellationToken)
+    public async Task<bool> UpdatePostAsync(PostManagementViewModel post, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        //TODO Validate tags, etc
+        var entity = post.ToEntity();
+        dbContext.Posts.Attach(entity);
+        var result = await dbContext.SaveChangesAsync(cancellationToken);
+        return result > 0;
+    }
+
+    public async Task DeletePostAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        await dbContext.Posts.Where(x => x.Id == id).ExecuteDeleteAsync(cancellationToken);
     }
 }

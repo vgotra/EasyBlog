@@ -1,5 +1,5 @@
 ﻿namespace EasyBlog.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class AdminControllerBase : Controller;
