@@ -4,6 +4,8 @@ namespace EasyBlog;
 
 public static class Startup
 {
+    //TODO Move to configuration and simplify
+
     public static void ConfigureServices(this IServiceCollection services, HostBuilderContext context)
     {
         var configuration = context.Configuration;
@@ -18,6 +20,10 @@ public static class Startup
             services.ConfigureDataAccessSqlServer(context);
         else
             throw new Exception($"Unsupported provider: {provider}");
+
+        services.AddScoped<IPostsService, PostsService>();
+        services.AddScoped<IPostsManagementService, PostsManagementService>();
+        services.AddScoped<ITagsService, TagsService>();
 
         services.ConfigureCompression(context);
     }

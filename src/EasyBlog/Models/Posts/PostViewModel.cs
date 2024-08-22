@@ -1,4 +1,4 @@
-namespace EasyBlog.Models;
+namespace EasyBlog.Models.Posts;
 
 public class PostViewModel
 {

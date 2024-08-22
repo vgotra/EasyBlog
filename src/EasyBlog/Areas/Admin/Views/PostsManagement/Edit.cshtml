@@ -1,0 +1,65 @@
+﻿@model EasyBlog.Models.Posts.PostManagementViewModel
+
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<h1 class="title is-4">Edit Post</h1>
+
+<form asp-action="Edit" method="put">
+    <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+            <input class="input" type="text" asp-for="Title"/>
+        </div>
+        <span class="help is-danger" asp-validation-for="Title"></span>
+    </div>
+
+    <div class="field">
+        <label class="label">Content</label>
+        <div class="control">
+            <textarea class="textarea" asp-for="Content"></textarea>
+        </div>
+        <span class="help is-danger" asp-validation-for="Content"></span>
+    </div>
+
+    <div class="field">
+        <label class="label">Is Published</label>
+        <div class="control">
+            <input type="checkbox" asp-for="IsPublished"/>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Publish On Date</label>
+        <div class="control">
+            <input class="input" type="datetime-local" asp-for="PublishOnDate"/>
+        </div>
+        <span class="help is-danger" asp-validation-for="PublishOnDate"></span>
+    </div>
+
+    <div class="field">
+        <label class="label">Readable Url</label>
+        <div class="control">
+            <input class="input" type="text" asp-for="ReadableUrl"/>
+        </div>
+        <span class="help is-danger" asp-validation-for="ReadableUrl"></span>
+    </div>
+
+    <div class="field">
+        <label class="label">Tags</label>
+        <div class="control">
+            <input class="input" type="text" asp-for="Tags"/>
+        </div>
+        <span class="help is-danger" asp-validation-for="Tags"></span>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-primary" type="submit">Save</button>
+        </div>
+        <div class="control">
+            <a class="button" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</form>

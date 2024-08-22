@@ -11,8 +11,8 @@
 
 <header class="top-bar">
     <nav>
-        <a asp-area="" asp-controller="Home" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Home</a>
-        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <a asp-area="" asp-controller="Posts" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Easy Blog</a>
+        @await Html.PartialAsync("_LoginPartial")
     </nav>
 </header>
 
@@ -21,9 +21,9 @@
 </main>
 
 <footer>
-    &copy; 2024 - EasyBlog
+    &copy; @(DateTime.UtcNow.Year) - EasyBlog
 </footer>
 <script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", false)
 </body>
 </html>

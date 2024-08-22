@@ -9,5 +9,5 @@ public class PostEntity : Entity<Guid>
     public DateTimeOffset? PublishOnDate { get; set; }
     public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
 
-    public List<TagsEntity> Tags { get; } = [];
+    public List<TagEntity> Tags { get; } = [];
 }

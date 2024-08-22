@@ -1,6 +1,6 @@
 ﻿# Playwright Tests
 
-## Prerequisites 
+## Prerequisites
 
 ### Downloading web browsers for tests
 

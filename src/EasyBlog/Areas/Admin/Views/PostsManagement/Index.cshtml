@@ -1,0 +1,68 @@
+﻿@model EasyBlog.Models.Posts.PostManagementListViewModel
+
+@{
+    ViewData["Title"] = "Posts Management";
+}
+
+<h1 class="title is-4 my-4">Welcome to the Posts Management</h1>
+
+<form method="get" asp-action="Index" class="field is-grouped mb-4">
+    <div class="control">
+        <input type="text" name="searchQuery" value="@Model.SearchQuery" class="input" placeholder="Search"/>
+    </div>
+    <div class="control">
+        <button type="submit" class="button is-primary">Search</button>
+    </div>
+</form>
+
+<div class="field is-grouped mb-4">
+    <div class="control">
+        <a class="button is-primary" asp-action="Create">Create New Post</a>
+    </div>
+</div>
+
+<table class="table is-striped is-fullwidth">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Is Published</th>
+        <td>Created Date</td>
+        <td>Publish On Date</td>
+        <td>Readable Url</td>
+        <td>Tags</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var post in Model.Posts)
+    {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.Content</td>
+            <td>
+                <input type="checkbox" disabled checked="@post.IsPublished"/>
+            </td>
+            <td>@post.CreatedDate.ToString("g")</td>
+            <td>@post.PublishOnDate?.ToString("g")</td>
+            <td>@post.ReadableUrl</td>
+            <td></td>
+            <td>
+                <a class="button is-small is-info" asp-action="Details" asp-route-id="@post.Id">View</a>
+                <a class="button is-small is-warning" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                <a class="button is-small is-danger" asp-action="Delete" asp-route-id="@post.Id">Delete</a> @*//TODO Add confirmation modal *@
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous @(Model.PageNumber == 1 ? "is-disabled" : "")" href="?page=@(Model.PageNumber - 1)&searchQuery=@Model.SearchQuery">Previous</a>
+    <a class="pagination-next @(Model.PageNumber == Model.TotalRecords ? "is-disabled" : "")" href="?page=@(Model.PageNumber + 1)&searchQuery=@Model.SearchQuery">Next</a>
+    <ul class="pagination-list">
+        <li>
+            <span class="pagination-ellipsis">Page @Model.PageNumber of @Model.TotalRecords</span>
+        </li>
+    </ul>
+</nav>

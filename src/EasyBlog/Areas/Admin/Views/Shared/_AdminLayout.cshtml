@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - EasyBlog</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body>
+
+<header class="top-bar">
+    <nav class="navbar is-light">
+        <div class="navbar-brand">
+            <a class="navbar-item" asp-area="" asp-controller="Posts" asp-action="Index">Easy Blog</a>
+            <a class="navbar-item" asp-area="Admin" asp-controller="Management" asp-action="Index">Management Area</a>
+            <a class="navbar-item" asp-area="Admin" asp-controller="PostsManagement" asp-action="Index">Posts Management</a>
+            <a class="navbar-item" asp-area="Admin" asp-controller="SettingsManagement" asp-action="Index">Settings Management</a>
+        </div>
+    </nav>
+</header>
+
+<main role="main" class="container mt-4">
+    @RenderBody()
+</main>
+
+<footer class="footer mt-auto py-3">
+    <div class="content has-text-centered">
+        <p>&copy; @(DateTime.UtcNow.Year) - EasyBlog</p>
+    </div>
+</footer>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", false)
+</body>
+</html>
