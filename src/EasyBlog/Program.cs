@@ -2,6 +2,8 @@ using EasyBlog.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<EasyBlogOptions>(builder.Configuration.GetSection(EasyBlogOptions.ConfigurationSectionName));
+
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
 builder.Host.ConfigureServices((context, services) => services.ConfigureAuth(context));
 builder.Services.ConfigureCors();
@@ -38,5 +40,7 @@ app.MapControllerRoute("Admin", "{area:exists}/{controller=Management}/{action=I
 app.MapControllerRoute("default", "{controller=Posts}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+await app.Services.ConfigureAuthDefaultUsersAsync(); //Add default admin user if needed
 
 app.Run();

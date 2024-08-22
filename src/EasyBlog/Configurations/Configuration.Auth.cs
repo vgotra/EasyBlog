@@ -23,6 +23,7 @@ public static class ConfigurationAuth
 
             options.LoginPath = "/Identity/Account/Login";
             options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            options.LogoutPath = "/";
             options.SlidingExpiration = true;
         });
     }
