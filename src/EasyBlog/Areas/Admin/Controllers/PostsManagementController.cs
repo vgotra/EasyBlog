@@ -11,16 +11,10 @@ public class PostsManagementController(IPostsManagementService service) : AdminC
     public async Task<IActionResult> Details(Guid id, CancellationToken cancellationToken = default)
     {
         var post = await service.GetPostByIdAsync(id, cancellationToken);
-        if (post == null)
-            return NotFound();
-
-        return View(post);
+        return post == null ? NotFound() : View(post);
     }
 
-    public IActionResult Create()
-    {
-        return View(new PostManagementViewModel());
-    }
+    public IActionResult Create() => View(new PostManagementViewModel());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -36,13 +30,10 @@ public class PostsManagementController(IPostsManagementService service) : AdminC
     public async Task<IActionResult> Edit(Guid id, CancellationToken cancellationToken = default)
     {
         var post = await service.GetPostByIdAsync(id, cancellationToken);
-        if (post == null)
-            return NotFound();
-
-        return View(post);
+        return post == null ? NotFound() : View(post);
     }
 
-    [HttpPut]
+    [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(PostManagementViewModel model, CancellationToken cancellationToken = default)
     {
@@ -64,4 +55,7 @@ public class PostsManagementController(IPostsManagementService service) : AdminC
         await service.DeletePostAsync(id, cancellationToken);
         return RedirectToAction(nameof(Index));
     }
+
+    /// Temporary
+    public new IActionResult NotFound() => RedirectToAction(nameof(Index));
 }

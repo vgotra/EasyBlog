@@ -59,12 +59,4 @@
     </table>
 </div>
 
-<nav class="pagination" role="navigation" aria-label="pagination">
-    <a class="btn btn-primary @(Model.PageNumber == 1 ? "disabled" : "")" role="button" href="?page=@(Model.PageNumber - 1)&searchQuery=@Model.SearchQuery">Previous</a>
-    <a class="btn btn-primary @(Model.PageNumber == Model.TotalRecords ? "disabled" : "")" role="button" href="?page=@(Model.PageNumber + 1)&searchQuery=@Model.SearchQuery">Next</a>
-    <ul class="pagination-list">
-        <li>
-            <span class="pagination-ellipsis">Page @Model.PageNumber of @Model.TotalRecords</span>
-        </li>
-    </ul>
-</nav>
+@await Html.PartialAsync("PaginationControl", Model)

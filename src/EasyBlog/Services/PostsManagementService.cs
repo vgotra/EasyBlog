@@ -6,7 +6,7 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
 {
     public async Task<PostManagementListViewModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {
-        var query = dbContext.Posts.AsNoTracking().Where(x => x.IsPublished);
+        var query = dbContext.Posts.Include(x => x.Tags).AsNoTracking().Where(x => x.IsPublished);
         if (!string.IsNullOrWhiteSpace(inputModel.SearchQuery))
             query = query.Where(x => x.Title.Contains(inputModel.SearchQuery) || x.Content.Contains(inputModel.SearchQuery));
 
