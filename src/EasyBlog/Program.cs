@@ -44,4 +44,6 @@ app.MapRazorPages();
 
 await app.Services.ConfigureAuthDefaultUsersAsync(); //Add default admin user if needed
 
+app.UseLocalization();
+
 app.Run();

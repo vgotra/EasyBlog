@@ -1,3 +1,4 @@
+// ReSharper disable ClassNeverInstantiated.Global
 using FluentValidation;
 
 namespace EasyBlog.Areas.Admin.Validation;

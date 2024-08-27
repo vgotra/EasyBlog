@@ -1,7 +1,7 @@
-namespace EasyBlog.Extensions;
+namespace EasyBlog.Areas.Admin.Extensions;
 
 [Mapper]
-public static partial class ManagementModelMappingExtensions
+public static partial class PostModelMappingExtensions
 {
     [MapperIgnoreTarget(nameof(PostManagementViewModel.Tags))]
     private static partial PostManagementViewModel? MapToManagementModel(this PostEntity? entity);
@@ -10,8 +10,13 @@ public static partial class ManagementModelMappingExtensions
     public static PostManagementViewModel? ToManagementModel(this PostEntity? entity)
     {
         var model = MapToManagementModel(entity);
-        if (model != null && entity?.Tags != null)
-            model.Tags = string.Join(',', entity.Tags.Select(x => x.Name));
+        if (model == null || entity?.Tags == null)
+            return model;
+
+        if (model.PublishOnDate.HasValue)
+            model.PublishOnDate = model.PublishOnDate.Value.ToLocalTimeBasedOnCulture();
+
+        model.Tags = string.Join(',', entity.Tags.Select(x => x.Name));
         return model;
     }
 
@@ -25,18 +30,5 @@ public static partial class ManagementModelMappingExtensions
             TotalRecords = totalRecords,
             SearchQuery = model.SearchQuery
         };
-    }
-
-    [MapperIgnoreTarget(nameof(PostEntity.Tags))]
-    private static partial PostEntity MapToEntity(this PostManagementViewModel entity);
-
-    [UserMapping(Default = true)]
-    public static PostEntity ToEntity(this PostManagementViewModel entity)
-    {
-        var model = MapToEntity(entity);
-        var tags = entity.Tags?.Split(',').Select(x => new TagEntity { Name = x }).ToList();
-        if (tags != null)
-            model.Tags.AddRange(tags);
-        return model;
     }
 }

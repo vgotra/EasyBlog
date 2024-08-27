@@ -7,7 +7,7 @@ public class PostEntity : Entity<Guid>
     public bool IsPublished { get; set; } = false;
     public string ReadableUrl { get; set; } = string.Empty;
     public DateTimeOffset? PublishOnDate { get; set; }
-    public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedDate { get; set; } // better to set value in method to avoid bugs
 
     public List<TagEntity> Tags { get; } = [];
 }

@@ -40,12 +40,10 @@
         {
         <tr>
             <td>@post.Title</td>
-            <td>@post.Content</td>
-            <td>
-                <input type="checkbox" disabled checked="@post.IsPublished"/>
-            </td>
-            <td>@post.CreatedDate.ToString("g")</td>
-            <td>@post.PublishOnDate?.ToString("g")</td>
+            <td>@post.Content.ToContentWithEllipsis()</td> @*//TODO Add tooltip or something similar, check UI UX*@
+            <td><input type="checkbox" disabled checked="@post.IsPublished"/></td>
+            <td>@post.CreatedDate.ToString("g", CultureInfo.CurrentCulture)</td>
+            <td>@post.PublishOnDate?.ToString("g", CultureInfo.CurrentCulture)</td>
             <td>@post.ReadableUrl</td>
             <td>@post.Tags</td>
             <td>

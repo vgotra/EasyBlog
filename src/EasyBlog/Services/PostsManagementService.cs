@@ -1,3 +1,4 @@
+using EasyBlog.Areas.Admin.Extensions;
 using MongoDB.Driver.Linq;
 
 namespace EasyBlog.Services;
@@ -6,7 +7,7 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
 {
     public async Task<PostManagementListViewModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {
-        var query = dbContext.Posts.Include(x => x.Tags).AsNoTracking().Where(x => x.IsPublished);
+        var query = dbContext.Posts.Include(x => x.Tags).AsNoTracking();
         if (!string.IsNullOrWhiteSpace(inputModel.SearchQuery))
             query = query.Where(x => x.Title.Contains(inputModel.SearchQuery) || x.Content.Contains(inputModel.SearchQuery));
 

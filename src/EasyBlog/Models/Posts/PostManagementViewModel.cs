@@ -7,7 +7,7 @@ public class PostManagementViewModel
     public string Content { get; set; } = string.Empty;
     public bool IsPublished { get; set; } = false;
     public string ReadableUrl { get; set; } = string.Empty;
+    public DateTimeOffset CreatedDate { get; set; }
     public DateTimeOffset? PublishOnDate { get; set; }
-    public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
     public string? Tags { get; set; }
 }
