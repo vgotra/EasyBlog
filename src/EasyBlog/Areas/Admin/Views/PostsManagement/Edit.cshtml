@@ -40,7 +40,7 @@
 
     <div class="col-md-12">
         <label for="Tags" class="form-label">Tags</label>
-        <input type="text" class="form-control tagin" id="Tags" asp-for="Tags"/>
+        <input type="text" class="form-control use-bootstrap-tag" id="Tags" asp-for="Tags"/>
         <div class="text-danger" asp-validation-for="Tags"></div>
     </div>
 
@@ -52,16 +52,9 @@
 
 @section Scripts {
     <script>
-        function togglePublishOnDate() {
-            let isPublished = document.getElementById("IsPublished").checked;
-            let publishOnDate = document.getElementById("PublishOnDate");
-            publishOnDate.value = isPublished ? "" : publishOnDate.value;
-            publishOnDate.disabled = isPublished;
-        }
-
         document.addEventListener("DOMContentLoaded", function() {
             togglePublishOnDate();
-            new Tagin(document.querySelector('.tagin'))
+            new UseBootstrapTag(document.querySelector('.use-bootstrap-tag'))
         });
     </script>
 }

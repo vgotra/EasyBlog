@@ -10,13 +10,15 @@ public static partial class PostModelMappingExtensions
     public static PostManagementViewModel? ToManagementModel(this PostEntity? entity)
     {
         var model = MapToManagementModel(entity);
-        if (model == null || entity?.Tags == null)
+        if (model == null)
             return model;
 
         if (model.PublishOnDate.HasValue)
             model.PublishOnDate = model.PublishOnDate.Value.ToLocalTimeBasedOnCulture();
 
-        model.Tags = string.Join(',', entity.Tags.Select(x => x.Name));
+        if (entity?.Tags != null)
+            model.Tags = string.Join(',', entity.Tags.OrderBy(x => x.Name).Select(x => x.Name));
+
         return model;
     }
 

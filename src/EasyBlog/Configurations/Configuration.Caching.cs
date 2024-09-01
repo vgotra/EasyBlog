@@ -7,6 +7,10 @@ public static class ConfigurationCaching
     /// </remarks>
     public static void ConfigureCaching(this IServiceCollection services)
     {
-        services.AddOutputCache(options => options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromSeconds(10))));
+        services.AddOutputCache(options =>
+        {
+            options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromSeconds(10)));
+            options.AddPolicy(Defaults.Cache.NoCachePolicy, builder => builder.NoCache()); //For Admin pages
+        });
     }
 }

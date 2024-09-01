@@ -1,10 +1,11 @@
 ﻿namespace EasyBlog.Areas.Admin.Controllers;
 
-public class PostsManagementController(IPostsManagementService service) : AdminControllerBase
+public class PostsManagementController(IPostsManagementService service, ILogger<PostsManagementController> logger) : AdminControllerBase
 {
     public async Task<IActionResult> Index([FromQuery] PostsInputModel? model, CancellationToken cancellationToken = default)
     {
-        var viewModel = await service.GetPostsAsync(model ?? new PostsInputModel(), cancellationToken);
+        var inputModel = model ?? new PostsInputModel();
+        var viewModel = await service.GetPostsAsync(inputModel, cancellationToken);
         return View(viewModel);
     }
 
@@ -40,12 +41,17 @@ public class PostsManagementController(IPostsManagementService service) : AdminC
         if (!ModelState.IsValid)
             return View(model);
 
-        var result = await service.UpdatePostAsync(model, cancellationToken);
-        if (result)
+        try
+        {
+            await service.UpdatePostAsync(model, cancellationToken);
             return RedirectToAction(nameof(Index));
-
-        ModelState.AddModelError("", "Failed to update the post.");
-        return View(model);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Exception during update of post");
+            ModelState.AddModelError("", "Failed to update the post.");
+            return View(model);
+        }
     }
 
     [HttpDelete]

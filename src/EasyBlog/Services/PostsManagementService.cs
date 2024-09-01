@@ -23,21 +23,43 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
         return post.ToManagementModel();
     }
 
-    public async Task CreatePostAsync(PostManagementViewModel post, CancellationToken cancellationToken)
+    public async Task CreatePostAsync(PostManagementViewModel postModel, CancellationToken cancellationToken)
     {
-        //TODO Synchronize tags
-        var entity = post.ToEntity();
+        var entity = postModel.ToEntity();
         dbContext.Posts.Add(entity);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<bool> UpdatePostAsync(PostManagementViewModel post, CancellationToken cancellationToken)
+    public async Task UpdatePostAsync(PostManagementViewModel postModel, CancellationToken cancellationToken)
     {
-        //TODO Validate tags, etc
-        var entity = post.ToEntity();
-        dbContext.Posts.Attach(entity);
-        var result = await dbContext.SaveChangesAsync(cancellationToken);
-        return result > 0;
+        var postEntity = await dbContext.Posts.Include(x => x.Tags).FirstOrDefaultAsync(x => x.Id == postModel.Id, cancellationToken);
+        if (postEntity == null)
+            return;
+
+        var allTags = await dbContext.Tags.AsNoTracking().ToListAsync(cancellationToken);
+
+        postEntity.UpdateFrom(postModel);
+        SyncTags(postEntity, postModel, allTags);
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    private void SyncTags(PostEntity postEntity, PostManagementViewModel postModel, List<TagEntity> allTags)
+    {
+        var dbTags = postEntity.Tags.ToList();
+        var modelTags = postModel.Tags?.Split(',').Select(x => x.Trim()).Where(x => !string.IsNullOrWhiteSpace(x)).ToList() ?? [];
+
+        postEntity.Tags.RemoveAll(tag => modelTags.Find(x => tag.Name.Equals(x, StringComparison.OrdinalIgnoreCase)) == null);
+
+        var newTags = modelTags.Where(tagName => dbTags.All(t => t.Name != tagName)).Select(x => new TagEntity { Name = x }).ToList();
+        foreach (var newTag in newTags)
+        {
+            var existingNewTag = allTags.Find(x => newTag.Name.Equals(x.Name, StringComparison.OrdinalIgnoreCase));
+            if (existingNewTag != null)
+                newTag.Id = existingNewTag.Id;
+        }
+
+        postEntity.Tags.AddRange(newTags);
     }
 
     public async Task DeletePostAsync(Guid id, CancellationToken cancellationToken = default)
