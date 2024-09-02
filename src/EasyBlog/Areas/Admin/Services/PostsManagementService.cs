@@ -1,7 +1,4 @@
-using EasyBlog.Areas.Admin.Extensions;
-using MongoDB.Driver.Linq;
-
-namespace EasyBlog.Services;
+namespace EasyBlog.Areas.Admin.Services;
 
 public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsManagementService
 {

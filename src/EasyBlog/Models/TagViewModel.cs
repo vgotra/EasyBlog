@@ -1,4 +1,4 @@
-namespace EasyBlog.Models.Tags;
+namespace EasyBlog.Models;
 
 public class TagViewModel
 {

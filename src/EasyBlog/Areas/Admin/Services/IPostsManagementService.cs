@@ -1,4 +1,4 @@
-namespace EasyBlog.Services;
+namespace EasyBlog.Areas.Admin.Services;
 
 public interface IPostsManagementService
 {

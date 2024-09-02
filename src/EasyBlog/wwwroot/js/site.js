@@ -2,8 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 function togglePublishOnDate() {
-    let isPublished = document.getElementById("IsPublished").checked;
-    let publishOnDate = document.getElementById("PublishOnDate");
+    const isPublished = document.getElementById('IsPublished').checked;
+    const publishOnDate = document.getElementById('PublishOnDate');
     publishOnDate.value = isPublished ? "" : publishOnDate.value;
     publishOnDate.disabled = isPublished;
 }

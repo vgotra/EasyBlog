@@ -1,4 +1,4 @@
-﻿@model EasyBlog.Models.Posts.PostManagementViewModel
+﻿@model PostManagementViewModel
 
 @{
     ViewData["Title"] = "Edit Post";
@@ -15,7 +15,7 @@
 
     <div class="col-md-12">
         <label for="Content" class="form-label">Content</label>
-        <textarea class="form-control" id="Content" asp-for="Content"></textarea>
+        <textarea class="form-control" id="Content" asp-for="Content" rows="5"></textarea>
         <div class="text-danger" asp-validation-for="Content"></div>
     </div>
 
@@ -40,7 +40,7 @@
 
     <div class="col-md-12">
         <label for="Tags" class="form-label">Tags</label>
-        <input type="text" class="form-control use-bootstrap-tag" id="Tags" asp-for="Tags"/>
+        <input type="text" class="form-control" id="Tags" asp-for="Tags"/>
         <div class="text-danger" asp-validation-for="Tags"></div>
     </div>
 
@@ -54,7 +54,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             togglePublishOnDate();
-            new UseBootstrapTag(document.querySelector('.use-bootstrap-tag'))
+            new UseBootstrapTag(document.getElementById('Tags'));
         });
     </script>
 }

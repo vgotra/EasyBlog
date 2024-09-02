@@ -1,4 +1,4 @@
-namespace EasyBlog.Models.Posts;
+namespace EasyBlog.Areas.Admin.Models;
 
 public class PostManagementViewModel
 {
