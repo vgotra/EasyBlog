@@ -1,0 +1,18 @@
+@model BaseViewModel
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.IsFirstPage ? "disabled" : "")">
+            <a class="page-link" href="?page=@(Model.PreviousPage)">Previous</a>
+        </li>
+        @for (var i = 1; i <= Model.PagesCount; i++)
+        {
+            <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                <a class="page-link" href="?page=@i">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.PageNumber == Model.PagesCount ? "disabled" : "")">
+            <a class="page-link" href="?page=@(Model.NextPage)">Next</a>
+        </li>
+    </ul>
+</nav>

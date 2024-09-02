@@ -7,8 +7,7 @@
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5142;https://localhost:7149",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

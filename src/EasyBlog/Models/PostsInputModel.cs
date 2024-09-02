@@ -1,4 +1,4 @@
-namespace EasyBlog.Models.Posts;
+namespace EasyBlog.Models;
 
 public class PostsInputModel : BaseInputModel
 {

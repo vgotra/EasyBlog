@@ -6,4 +6,9 @@ public static class Defaults
     {
         public const string DefaultAdminRoleName = "AdminRole";
     }
+
+    public static class Cache
+    {
+        public const string NoCachePolicy = nameof(NoCachePolicy);
+    }
 }

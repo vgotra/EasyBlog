@@ -1,5 +1,3 @@
-using EasyBlog.Models.Tags;
-
 namespace EasyBlog.Extensions;
 
 [Mapper]
