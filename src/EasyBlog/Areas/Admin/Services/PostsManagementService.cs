@@ -61,6 +61,12 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
 
     public async Task DeletePostAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await dbContext.Posts.Where(x => x.Id == id).ExecuteDeleteAsync(cancellationToken);
+        var post = await dbContext.Posts.Include(p => p.Tags).FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+        if (post != null)
+        {
+            post.Tags.Clear();
+            dbContext.Posts.Remove(post);
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
     }
 }

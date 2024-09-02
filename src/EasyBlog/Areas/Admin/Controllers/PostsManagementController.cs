@@ -54,8 +54,6 @@ public class PostsManagementController(IPostsManagementService service, ILogger<
         }
     }
 
-    [HttpDelete]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken = default)
     {
         await service.DeletePostAsync(id, cancellationToken);

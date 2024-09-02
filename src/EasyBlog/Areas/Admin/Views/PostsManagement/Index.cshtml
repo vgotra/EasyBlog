@@ -4,22 +4,21 @@
     ViewData["Title"] = "Posts Management";
 }
 
-<h1 class="title is-4 my-4">Posts Management</h1>
+<h1 class="title is-4 my-4 d-flex justify-content-between align-items-center">
+    <span>Posts</span>
+    <a class="btn btn-primary" asp-action="Create">New Post</a>
+</h1>
 
 <form method="get" asp-action="Index" class="row g-3 mb-4">
-    <div class="col-md-6">
-        <input type="text" name="searchQuery" value="@Model.SearchQuery" class="form-control" placeholder="Search"/>
-    </div>
-    <div class="col-md-6">
-        <button type="submit" class="btn btn-primary">Search</button>
+    <div class="input-group mb-3">
+        <input type="text" name="SearchQuery" value="@Model.SearchQuery" class="form-control" placeholder="Search" aria-describedby="search-btn"/>
+        <button class="btn btn-primary" type="submit" id="search-btn">Search</button>
+        @if (!string.IsNullOrEmpty(Model.SearchQuery))
+        {
+            <a type="submit" class="btn btn-outline-secondary" asp-action="Index">Reset</a>
+        }
     </div>
 </form>
-
-<div class="row g-3 mb-4">
-    <div class="col-md-12">
-        <a class="btn btn-primary" asp-action="Create">Create New Post</a>
-    </div>
-</div>
 
 <div class="table-responsive">
     <table class="table table-striped">
@@ -40,16 +39,16 @@
         {
         <tr>
             <td>@post.Title</td>
-            <td>@post.Content.ToContentWithEllipsis()</td> @*//TODO Add tooltip or something similar, check UI UX*@
+            <td class="text-truncate max-width-300">@post.Content</td>
             <td><input type="checkbox" disabled checked="@post.IsPublished"/></td>
             <td>@post.CreatedDate.ToString("g", CultureInfo.CurrentCulture)</td>
             <td>@post.PublishOnDate?.ToString("g", CultureInfo.CurrentCulture)</td>
             <td>@post.ReadableUrl</td>
             <td>@post.Tags</td>
-            <td>
-                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@post.Id">View</a>
-                <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
-                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+            <td class="min-width-150">
+                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@post.Id"><i class="bi bi-eye"></i></a>
+                <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@post.Id"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@post.Id"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
         }
