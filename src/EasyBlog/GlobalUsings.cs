@@ -7,6 +7,7 @@ global using EasyBlog.Areas.Admin.Extensions;
 global using EasyBlog.Areas.Admin.Models;
 global using EasyBlog.Areas.Admin.Services;
 global using EasyBlog.Common;
+global using EasyBlog.Configurations;
 global using EasyBlog.DataAccess;
 global using EasyBlog.DataAccess.Entities;
 global using EasyBlog.Extensions;

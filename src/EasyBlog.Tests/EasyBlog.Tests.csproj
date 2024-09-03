@@ -4,9 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,13 +19,21 @@
         <PackageReference Include="Microsoft.Playwright.MSTest" Version="1.46.0"/>
         <PackageReference Include="MSTest.TestAdapter" Version="3.5.2"/>
         <PackageReference Include="MSTest.TestFramework" Version="3.5.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.8"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="Microsoft.Playwright.MSTest"/>
-        <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting"/>
-        <Using Include="System.Text.RegularExpressions"/>
-        <Using Include="System.Threading.Tasks"/>
+        <None Update="Microsoft.Playwright.deps.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="localhost-dev.pfx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Remove="package.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyBlog\EasyBlog.csproj" />
     </ItemGroup>
 
 </Project>

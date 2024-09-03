@@ -1,5 +1,3 @@
-using EasyBlog.Configurations;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<EasyBlogOptions>(builder.Configuration.GetSection(EasyBlogOptions.ConfigurationSectionName));
@@ -47,3 +45,5 @@ await app.Services.ConfigureAuthDefaultUsersAsync(); //Add default admin user if
 app.UseLocalization();
 
 app.Run();
+
+public partial class Program { }

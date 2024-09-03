@@ -1,5 +1,3 @@
-using EasyBlog.Configurations;
-
 namespace EasyBlog;
 
 public static class Startup
