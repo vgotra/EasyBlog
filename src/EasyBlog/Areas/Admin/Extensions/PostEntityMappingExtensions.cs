@@ -24,11 +24,12 @@ public static partial class PostEntityMappingExtensions
 
     public static PostEntity UpdateFrom(this PostEntity postEntity, PostManagementViewModel model)
     {
-        postEntity.Title = model.Title;
-        postEntity.Content = model.Content;
         postEntity.IsPublished = model.IsPublished;
         postEntity.ReadableUrl = model.ReadableUrl;
         postEntity.PublishOnDate = model.PublishOnDate?.ToUniversalTime();
+
+        var postContent = new PostContentEntity { Title = model.Title, Content = model.Content };
+        postEntity.Contents.Add(postContent);
 
         return postEntity;
     }

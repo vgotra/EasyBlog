@@ -1,13 +1,27 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace EasyBlog.DataAccess.Entities;
 
-public class PostEntity : Entity<Guid>
+[Table("Posts")]
+public class PostEntity : IEntity<Guid>
 {
-    public string Title { get; set; } = string.Empty;
-    public string Content { get; set; } = string.Empty;
-    public bool IsPublished { get; set; } = false;
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid Id { get; set; }
+
+    [Required]
+    public bool IsPublished { get; set; }
+
+    [Required, MaxLength(DbDefaults.Post.ReadableUrlMaxLength)]
     public string ReadableUrl { get; set; } = string.Empty;
+
     public DateTimeOffset? PublishOnDate { get; set; }
-    public DateTimeOffset CreatedDate { get; set; } // better to set value in method to avoid bugs
+
+    [Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTimeOffset CreatedDate { get; set; }
+
+    public List<PostContentEntity> Contents { get; set; } = [];
 
     public List<TagEntity> Tags { get; } = [];
+
 }
