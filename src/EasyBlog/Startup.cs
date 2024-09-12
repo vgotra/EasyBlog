@@ -1,3 +1,5 @@
+using EasyBlog.Services.Common;
+
 namespace EasyBlog;
 
 public static class Startup

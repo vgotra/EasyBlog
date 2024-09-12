@@ -1,4 +1,4 @@
-﻿using EasyBlog.DataAccess.SqlServer;
+﻿using EasyBlog.DataAccess.Relational.SqlServer;
 
 namespace EasyBlog.Configurations;
 

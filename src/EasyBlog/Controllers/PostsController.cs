@@ -1,3 +1,5 @@
+using EasyBlog.Services.Common;
+
 namespace EasyBlog.Controllers;
 
 [AllowAnonymous]
@@ -7,7 +9,7 @@ public class PostsController(IPostsService postsService) : Controller
     public async Task<IActionResult> Index([FromQuery] PostsInputModel? request, CancellationToken cancellationToken = default)
     {
         //TODO Add View Components later
-        var postsRequest = request ?? new PostsInputModel();
+        var postsRequest = request ?? new PostsInputModel { PageNumber = 1, PageSize = 10 };
         var model = await postsService.GetPostsAsync(postsRequest, cancellationToken);
         return View(model);
     }

@@ -1,5 +1,5 @@
-﻿using EasyBlog.DataAccess.PostgresSql;
-using EasyBlog.DataAccess.SqlServer;
+﻿using EasyBlog.DataAccess.Relational.PostgresSql;
+using EasyBlog.DataAccess.Relational.SqlServer;
 using Microsoft.AspNetCore.Identity;
 
 namespace EasyBlog.Configurations;

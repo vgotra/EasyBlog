@@ -4,11 +4,12 @@ public class PostsManagementService(EasyBlogDbContextBase dbContext) : IPostsMan
 {
     public async Task<PostManagementListViewModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {
+        //TODO Temporary solution
         var query = dbContext.PostContents.Include(x => x.Post).ThenInclude(x => x.Tags).AsNoTracking();
         if (!string.IsNullOrWhiteSpace(inputModel.SearchQuery))
             query = query.Where(x => x.Title.Contains(inputModel.SearchQuery) || x.Content.Contains(inputModel.SearchQuery));
 
-        var posts = await query.OrderByDescending(x => x.Post.CreatedDate).ApplyPaging(inputModel).Select(x => x.Post).Distinct().ToListAsync(cancellationToken);
+        var posts = await query.OrderByDescending(x => x.Post.CreatedDate).ApplyPaging(inputModel.PageNumber, inputModel.PageSize).Select(x => x.Post).Distinct().ToListAsync(cancellationToken);
         var total = await query.Select(x => x.Post).Distinct().CountAsync(cancellationToken); //TODO Check for posts count, not contents
 
         return inputModel.ToManagementListViewModel(posts, total);

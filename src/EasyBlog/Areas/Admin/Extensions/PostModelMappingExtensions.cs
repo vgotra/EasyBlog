@@ -1,3 +1,5 @@
+using EasyBlog.Common.Extensions;
+
 namespace EasyBlog.Areas.Admin.Extensions;
 
 [Mapper]

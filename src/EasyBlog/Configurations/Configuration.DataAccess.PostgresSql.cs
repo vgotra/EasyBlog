@@ -1,4 +1,4 @@
-﻿using EasyBlog.DataAccess.PostgresSql;
+﻿using EasyBlog.DataAccess.Relational.PostgresSql;
 
 namespace EasyBlog.Configurations;
 
