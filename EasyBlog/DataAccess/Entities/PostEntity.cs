@@ -6,8 +6,8 @@ public class PostEntity : Entity<Guid>
     public string Content { get; set; } = string.Empty;
     public bool IsPublished { get; set; } = false;
     public string ReadableUrl { get; set; } = string.Empty;
-    public DateTimeOffset? PublishOnDate { get; set; }
-    public DateTimeOffset CreatedDate { get; set; } // better to set value in method to avoid bugs
+    public DateTime? PublishOnDate { get; set; }
+    public DateTime CreatedDate { get; set; } // better to set value in method to avoid bugs
 
     public List<TagEntity> Tags { get; } = [];
 }

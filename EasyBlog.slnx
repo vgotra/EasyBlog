@@ -2,6 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path="docker-compose.yml" />
   </Folder>
-  <Project Path="EasyBlog.Tests\EasyBlog.Tests.csproj" Type="Classic C#" />
+  <Project Path="EasyBlog.Tests.UITests\EasyBlog.Tests.UITests.csproj" Type="Classic C#" />
   <Project Path="EasyBlog\EasyBlog.csproj" Type="Classic C#" />
 </Solution>

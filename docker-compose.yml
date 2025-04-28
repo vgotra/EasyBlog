@@ -5,4 +5,9 @@
       context: .
       dockerfile: EasyBlog/Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8080"  easyblog.webmanagement:
+    image: easyblog.webmanagement
+    build:
+      context: .
+      dockerfile: EasyBlog.WebManagement/Dockerfile
+
