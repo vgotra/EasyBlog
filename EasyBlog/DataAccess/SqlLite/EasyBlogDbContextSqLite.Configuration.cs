@@ -1,6 +1,6 @@
 namespace EasyBlog.DataAccess.SqlLite;
 
-public partial class EasyBlogDbContextSqLite
+partial class EasyBlogDbContextSqLite
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,7 +21,7 @@ public partial class EasyBlogDbContextSqLite
         modelBuilder.Entity<TagEntity>(entity =>
         {
             entity.ToTable("Tags").HasKey(e => e.Id);
-            entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
+            entity.Property(e => e.Name).IsRequired().HasMaxLength(40);
             entity.HasIndex(x => x.Name).IsUnique();
 
             entity.HasMany(e => e.Posts).WithMany(e => e.Tags);

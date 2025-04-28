@@ -12,8 +12,5 @@ public class PostsController(IPostsService postsService) : Controller
         return View(model);
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+    public IActionResult Privacy() => View();
 }

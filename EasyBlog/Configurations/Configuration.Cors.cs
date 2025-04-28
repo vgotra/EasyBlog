@@ -1,6 +1,6 @@
 ﻿namespace EasyBlog.Configurations;
 
-public static class ConfigurationCors
+static class ConfigurationCors
 {
     public static void ConfigureCors(this IServiceCollection services)
     {

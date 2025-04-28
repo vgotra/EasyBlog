@@ -1,6 +1,6 @@
 ﻿namespace EasyBlog.Configurations;
 
-public static class ConfigurationDataAccessSqlite
+static class ConfigurationDataAccessSqlite
 {
     public static void ConfigureDataAccessSqLite(this IServiceCollection services, HostBuilderContext context)
     {

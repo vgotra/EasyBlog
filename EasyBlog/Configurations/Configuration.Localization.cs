@@ -1,6 +1,6 @@
 namespace EasyBlog.Configurations;
 
-public static class ConfigurationLocalization
+static class ConfigurationLocalization
 {
     public static void UseLocalization(this IApplicationBuilder app)
     {

@@ -1,6 +1,6 @@
 namespace EasyBlog.Services;
 
-public interface ITagsService
+interface ITagsService
 {
     Task<List<TagViewModel>> GetAllAsync(CancellationToken cancellationToken);
 }

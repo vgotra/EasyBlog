@@ -1,8 +1,8 @@
 namespace EasyBlog.Extensions;
 
-public static partial class ModelsMappingExtensions
+static class ModelsMappingExtensions
 {
-    public static PostViewModel? ToModel(this PostEntity? entity) =>
+    private static PostViewModel? ToModel(this PostEntity? entity) =>
         entity == null ? null : new PostViewModel
         {
             Id = entity.Id,

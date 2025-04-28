@@ -1,6 +1,6 @@
 namespace EasyBlog.Services;
 
-public class PostsService(EasyBlogDbContextBase dbContext) : IPostsService
+class PostsService(EasyBlogDbContextBase dbContext) : IPostsService
 {
     public async Task<PostListViewModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {

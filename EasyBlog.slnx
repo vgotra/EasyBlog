@@ -1,6 +1,5 @@
 ﻿<Solution>
   <Folder Name="/Solution Items/">
-    <File Path="docker-compose.yml" />
     <File Path=".github\workflows\default.yml" />
     <File Path=".dockerignore" />
     <File Path=".editorconfig" />

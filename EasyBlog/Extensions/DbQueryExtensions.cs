@@ -1,6 +1,6 @@
 namespace EasyBlog.Extensions;
 
-public static class DbQueryExtensions
+static class DbQueryExtensions
 {
     public static IQueryable<T> ApplyPaging<T>(this IQueryable<T> query, BaseInputModel inputModel)
     {

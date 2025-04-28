@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 
 namespace EasyBlog.Configurations;
 
-public static class ConfigurationCompression
+static class ConfigurationCompression
 {
     /// <remarks>
     /// https://learn.microsoft.com/en-us/aspnet/core/performance/response-compression?view=aspnetcore-8.0

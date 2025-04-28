@@ -1,6 +1,6 @@
 namespace EasyBlog.Services;
 
-public class TagsService(EasyBlogDbContextBase dbContext) : ITagsService
+class TagsService(EasyBlogDbContextBase dbContext) : ITagsService
 {
     public async Task<List<TagViewModel>> GetAllAsync(CancellationToken cancellationToken)
     {

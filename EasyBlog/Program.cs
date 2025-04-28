@@ -42,4 +42,4 @@ dbContext.Database.EnsureCreated();
 
 app.Run();
 
-public partial class Program { }
+partial class Program { }

@@ -1,13 +1,13 @@
 namespace EasyBlog.Configurations;
 
-public static class ConfigurationServices
+static class ConfigurationServices
 {
     public static void ConfigureServices(this IServiceCollection services, HostBuilderContext context)
     {
         var configuration = context.Configuration;
-        _ = configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.PostgresSql);
+        _ = configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.SqLite);
 
-        //INFO for prod can be useful to enable CompiledModels: //.UseModel(DataAccess.Compiledmodels.EasyBlogDbContextModel.Instance)
+        //INFO for prod can be useful to enable CompiledModels: //.UseModel(DataAccess.CompiledModels.EasyBlogDbContextModel.Instance)
         services.ConfigureDataAccessSqLite(context);
 
         services.AddScoped<IPostsService, PostsService>();

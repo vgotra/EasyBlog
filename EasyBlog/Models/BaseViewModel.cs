@@ -11,5 +11,5 @@ public abstract class BaseViewModel
     public bool IsFirstPage => PageNumber == 1;
     public int PreviousPage => PageNumber > 1 ? PageNumber - 1 : 1;
     public int NextPage => PageNumber < PagesCount ? PageNumber + 1 : PagesCount;
-    public int PagesCount => (int)Math.Ceiling((double)TotalRecords / (PageSize > 0 ? PageSize : DefaultPageSize));
+    int PagesCount => (int)Math.Ceiling((double)TotalRecords / (PageSize > 0 ? PageSize : DefaultPageSize));
 }

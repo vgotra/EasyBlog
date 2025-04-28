@@ -1,6 +1,6 @@
 ﻿namespace EasyBlog.Configurations;
 
-public static class ConfigurationCaching
+static class ConfigurationCaching
 {
     /// <remarks>
     /// https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-8.0
@@ -10,7 +10,7 @@ public static class ConfigurationCaching
         services.AddOutputCache(options =>
         {
             options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromSeconds(10)));
-            options.AddPolicy(Defaults.Cache.NoCachePolicy, builder => builder.NoCache()); //For Admin pages
+            options.AddPolicy(Defaults.Cache.NoCachePolicy, builder => builder.NoCache());
         });
     }
 }
