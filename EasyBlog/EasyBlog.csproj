@@ -14,6 +14,12 @@
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+    
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations\" />
@@ -22,7 +28,7 @@
     <ItemGroup>
         <InternalsVisibleTo Include="EasyBlog.Tests.UITests" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0-preview.3.25171.6" />
     </ItemGroup>

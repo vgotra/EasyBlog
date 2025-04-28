@@ -2,8 +2,8 @@ namespace EasyBlog.Extensions;
 
 static class ModelsMappingExtensions
 {
-    private static PostViewModel? ToModel(this PostEntity? entity) =>
-        entity == null ? null : new PostViewModel
+    private static PostPageModel? ToModel(this PostEntity? entity) =>
+        entity == null ? null : new PostPageModel
         {
             Id = entity.Id,
             Title = entity.Title,
@@ -12,7 +12,7 @@ static class ModelsMappingExtensions
             ReadableUrl = entity.ReadableUrl
         };
 
-    public static PostListViewModel ToListViewModel(this PostsInputModel model, List<PostEntity> posts, int totalRecords) =>
+    public static PostListPageModel ToListViewModel(this PostsInputModel model, List<PostEntity> posts, int totalRecords) =>
         new()
         {
             Posts = posts.Select(x => x.ToModel()).Where(x => x != null).ToList()!,
@@ -21,6 +21,6 @@ static class ModelsMappingExtensions
             TotalRecords = totalRecords
         };
 
-    public static TagViewModel? ToModel(this TagEntity? entity) =>
-        entity == null ? null : new TagViewModel { Id = entity.Id, Name = entity.Name };
+    public static TagPageModel? ToModel(this TagEntity? entity) =>
+        entity == null ? null : new TagPageModel { Id = entity.Id, Name = entity.Name };
 }

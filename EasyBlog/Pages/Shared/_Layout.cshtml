@@ -11,7 +11,7 @@
 
 <header class="top-bar">
     <nav>
-        <a asp-area="" asp-controller="Posts" asp-action="Index"><span>&#x1F3E0;&nbsp;</span>Easy Blog</a>
+        <a asp-area="" asp-page="/Index"><span>&#x1F3E0;&nbsp;</span>Easy Blog</a>
     </nav>
 </header>
 
@@ -20,7 +20,7 @@
 </main>
 
 <footer>
-    &copy; @(DateTime.UtcNow.Year) - EasyBlog
+    &copy; @(DateTime.UtcNow.Year) - EasyBlog <a asp-area="" asp-page="/Privacy">Privacy</a>
 </footer>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", false)

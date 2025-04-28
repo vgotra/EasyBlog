@@ -1,6 +1,6 @@
 namespace EasyBlog.Models;
 
-public abstract class BaseViewModel
+abstract class BasePageModel
 {
     private const int DefaultPageSize = 10;
 

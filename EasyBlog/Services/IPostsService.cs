@@ -1,6 +1,6 @@
 namespace EasyBlog.Services;
 
-public interface IPostsService
+interface IPostsService
 {
-    Task<PostListViewModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken);
+    Task<PostListPageModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken);
 }

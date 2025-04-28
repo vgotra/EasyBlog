@@ -1,6 +1,6 @@
 namespace EasyBlog.Models;
 
-public class PostViewModel
+class PostPageModel
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
