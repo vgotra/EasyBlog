@@ -1,0 +1,12 @@
+﻿@inherits RazorSliceHttpResult<PostListPageModel>
+@implements IUsesLayout<_Layout, LayoutModel>
+
+@foreach (var post in Model.Posts)
+{
+    <h2>@post.Title</h2>
+    <p>@post.Content</p>
+}
+
+@functions {
+    public LayoutModel LayoutModel => new() { Title = "Home Page - Easy Blog", Description = "Home Page - Easy Blog" };
+}

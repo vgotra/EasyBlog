@@ -1,10 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
+#if DEBUG
+var builder = WebApplication.CreateBuilder(args); // Hot Reload
+#else
+// Use the slim builder for Release builds
+var builder = WebApplication.CreateSlimBuilder(args);
+builder.WebHost.UseKestrelHttpsConfiguration();
+#endif
 
+
+
+builder.Services.AddWebEncoders();
 builder.Services.Configure<EasyBlogOptions>(builder.Configuration.GetSection(EasyBlogOptions.ConfigurationSectionName));
 builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
 builder.Services.ConfigureCors();
 builder.Services.ConfigureCaching();
-builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -21,16 +29,22 @@ app.UseStaticFiles(new StaticFileOptions
 {
     OnPrepareResponse = ctx => ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=3600")
 });
-
 app.UseCors();
 app.UseRouting();
 app.UseOutputCache();
 app.UseLocalization();
 app.MapStaticAssets();
-app.MapRazorPages().WithStaticAssets();
 
-using var scope = app.Services.CreateScope();
-var dbContext = scope.ServiceProvider.GetRequiredService<EasyBlogDbContextSqLite>();
-dbContext.Database.EnsureCreated();
+// Comment For AOT
+// using var scope = app.Services.CreateScope();
+// var dbContext = scope.ServiceProvider.GetRequiredService<EasyBlogDbContextSqLite>();
+// await dbContext.Database.EnsureCreatedAsync();
+
+app.MapGet("/", async (IPostsService postsService, CancellationToken cancellationToken = default) =>
+{
+    var postsRequest = new PostsInputModel();
+    var model = await postsService.GetPostsAsync(postsRequest, cancellationToken);
+    return Results.Extensions.RazorSlice<EasyBlog.Slices.Index, PostListPageModel>(model);
+});
 
 app.Run();
