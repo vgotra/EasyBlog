@@ -7,7 +7,7 @@ static class ConfigurationDataAccessSqlite
         _ = configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.SqLite);
         services.AddDbContextPool<EasyBlogDbContextBase, EasyBlogDbContextSqLite>(options =>
             _ = options
-                .UseModel(DataAccess.CompiledModels.EasyBlogDbContextSqLiteModel.Instance)
+                //.UseModel(DataAccess.CompiledModels.EasyBlogDbContextSqLiteModel.Instance)
                 .UseSqlite(configuration.GetConnectionString("DefaultConnectionSqLite")));
     }
 }

@@ -28,9 +28,9 @@ app.UseLocalization();
 app.MapStaticAssets();
 
 // Comment For AOT
-// using var scope = app.Services.CreateScope();
-// var dbContext = scope.ServiceProvider.GetRequiredService<EasyBlogDbContextSqLite>();
-// await dbContext.Database.EnsureCreatedAsync();
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<EasyBlogDbContextSqLite>();
+await dbContext.Database.EnsureCreatedAsync();
 
 app.MapGet("/", async (IPostsService postsService, CancellationToken cancellationToken = default) =>
 {

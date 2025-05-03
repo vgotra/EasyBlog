@@ -8,7 +8,7 @@ static class ModelsMappingExtensions
             Id = entity.Id,
             Title = entity.Title,
             Content = entity.Content,
-            CreatedDate = entity.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss"), //TODO Culture 
+            CreatedDate = entity.CreatedDate, 
             ReadableUrl = entity.ReadableUrl
         };
 
