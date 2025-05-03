@@ -2,6 +2,8 @@
 
     <!-- Reference the props that would be brought in when consuming the RazorSlices package -->
     <!--<Import Project="..\..\src\RazorSlices\build\RazorSlices.props" />-->
+    <!-- Reference the targets that would be brought in when consuming the RazorSlices package -->
+    <!--<Import Project="..\..\src\RazorSlices\build\RazorSlices.targets" />-->
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
@@ -17,6 +19,7 @@
         <StartupHookSupport Condition="'$(Configuration)' == 'Debug'">true</StartupHookSupport>
         <PublishAot>false</PublishAot>
         <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
+        <InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.EntityFrameworkCore.GeneratedInterceptors</InterceptorsNamespaces>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(Configuration)' == 'Debug'">
@@ -45,8 +48,5 @@
         <Folder Include="Migrations\"/>
         <InternalsVisibleTo Include="EasyBlog.Tests.UITests"/>
     </ItemGroup>
-
-    <!-- Reference the targets that would be brought in when consuming the RazorSlices package -->
-    <!--<Import Project="..\..\src\RazorSlices\build\RazorSlices.targets" />-->
 
 </Project>

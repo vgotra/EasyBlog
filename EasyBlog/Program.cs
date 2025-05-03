@@ -1,18 +1,13 @@
-#if DEBUG
-var builder = WebApplication.CreateBuilder(args); // Hot Reload
-#else
-// Use the slim builder for Release builds
 var builder = WebApplication.CreateSlimBuilder(args);
 builder.WebHost.UseKestrelHttpsConfiguration();
-#endif
-
-
 
 builder.Services.AddWebEncoders();
 builder.Services.Configure<EasyBlogOptions>(builder.Configuration.GetSection(EasyBlogOptions.ConfigurationSectionName));
-builder.Host.ConfigureServices((context, services) => services.ConfigureServices(context));
+builder.Services.ConfigureDataAccessSqLite(builder.Configuration);
+builder.Services.ConfigureServices();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureCaching();
+builder.Services.ConfigureCompression();
 
 var app = builder.Build();
 
@@ -25,10 +20,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(new StaticFileOptions
-{
-    OnPrepareResponse = ctx => ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=3600")
-});
+app.UseStaticFiles(new StaticFileOptions { OnPrepareResponse = ctx => ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=3600") });
 app.UseCors();
 app.UseRouting();
 app.UseOutputCache();

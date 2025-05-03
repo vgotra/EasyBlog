@@ -8,7 +8,7 @@ static class ConfigurationCompression
     /// <remarks>
     /// https://learn.microsoft.com/en-us/aspnet/core/performance/response-compression?view=aspnetcore-8.0
     /// </remarks>
-    public static void ConfigureCompression(this IServiceCollection services, HostBuilderContext context)
+    public static void ConfigureCompression(this IServiceCollection services)
     {
         services.AddResponseCompression(options =>
         {
