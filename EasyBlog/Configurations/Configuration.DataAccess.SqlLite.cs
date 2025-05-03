@@ -2,8 +2,12 @@
 
 static class ConfigurationDataAccessSqlite
 {
-    public static void ConfigureDataAccessSqLite(this IServiceCollection services, HostBuilderContext context)
+    public static void ConfigureDataAccessSqLite(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContextPool<EasyBlogDbContextBase, EasyBlogDbContextSqLite>(options => _ = options.UseSqlite(context.Configuration.GetConnectionString("DefaultConnectionSqLite")));
+        _ = configuration.GetValue("EasyBlog:DatabaseProvider", SupportedDatabaseProviders.SqLite);
+        services.AddDbContextPool<EasyBlogDbContextBase, EasyBlogDbContextSqLite>(options =>
+            _ = options
+                .UseModel(DataAccess.CompiledModels.EasyBlogDbContextSqLiteModel.Instance)
+                .UseSqlite(configuration.GetConnectionString("DefaultConnectionSqLite")));
     }
 }

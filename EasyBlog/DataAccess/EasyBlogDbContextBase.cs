@@ -1,4 +1,4 @@
-﻿namespace EasyBlog.DataAccess;
+namespace EasyBlog.DataAccess;
 
 abstract class EasyBlogDbContextBase(DbContextOptions options) : DbContext(options)
 {
