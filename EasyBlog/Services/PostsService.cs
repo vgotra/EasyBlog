@@ -1,15 +1,23 @@
+using Microsoft.Data.Sqlite;
+using Nanorm;
+
 namespace EasyBlog.Services;
 
-class PostsService(EasyBlogDbContextBase dbContext) : IPostsService
+class PostsService(SqliteConnection dbConnection) : IPostsService
 {
-    /// <remarks>
-    /// For AOT EF.CompileAsyncQuery((EasyBlogDbContextBase context) => context.Posts.AsNoTracking().Where(x => x.IsPublished));
-    /// </remarks>>
-    
     public async Task<PostListPageModel> GetPostsAsync(PostsInputModel inputModel, CancellationToken cancellationToken)
     {
-        var posts = await dbContext.Posts.AsNoTracking().Where(x => x.IsPublished).OrderByDescending(x => x.CreatedDate).Skip((inputModel.PageNumber - 1) * inputModel.PageSize).Take(inputModel.PageSize).ToListAsync(cancellationToken);
-        var total = await dbContext.Posts.AsNoTracking().Where(x => x.IsPublished).CountAsync(cancellationToken);
+        var offset = (inputModel.PageNumber - 1) * inputModel.PageSize;
+        if (offset < 0) offset = 0;
+
+        var posts = await dbConnection
+            .QueryAsync<PostEntity>("SELECT * FROM Posts WHERE IsPublished = 1 ORDER BY CreatedDate DESC LIMIT @PageSize OFFSET @Offset", parameters =>
+            {
+                parameters.Add(new ("PageSize", inputModel.PageSize));
+                parameters.Add(new ("Offset", offset));
+            }, cancellationToken)
+            .ToListAsync(cancellationToken);
+        var total = await dbConnection.QueryAsync<PostEntity>("SELECT * FROM Posts WHERE IsPublished = 1", cancellationToken).CountAsync(cancellationToken);
 
         return inputModel.ToListViewModel(posts, total);
     }
