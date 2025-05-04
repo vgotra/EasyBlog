@@ -1,6 +1,9 @@
+using Nanorm;
+
 namespace EasyBlog.DataAccess.Entities;
 
-class PostEntity : Entity<Guid>
+[DataRecordMapper]
+partial class PostEntity : Entity<Guid>
 {
     public string Title { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;

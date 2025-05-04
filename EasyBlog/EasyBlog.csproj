@@ -1,10 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <!-- Reference the props that would be brought in when consuming the RazorSlices package -->
-    <!--<Import Project="..\..\src\RazorSlices\build\RazorSlices.props" />-->
-    <!-- Reference the targets that would be brought in when consuming the RazorSlices package -->
-    <!--<Import Project="..\..\src\RazorSlices\build\RazorSlices.targets" />-->
-
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
@@ -18,25 +13,18 @@
     <PropertyGroup>
         <!-- Startup hooks are disabled when publishing aot/trimmed but are required for Hot Reload to work so enabling it here -->
         <StartupHookSupport Condition="'$(Configuration)' == 'Debug'">true</StartupHookSupport>
-        <PublishAot>false</PublishAot> <!-- Check AOT for EF Core -->
+        <PublishAot>true</PublishAot>
         <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
     </PropertyGroup>
-
-    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0-preview.3.25171.6">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-    </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="RazorSlices" Version="0.9.1"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0-preview.3.25171.6"/>
+        <PackageReference Include="RazorSlices" Version="0.9.1" />
+        <PackageReference Include="Nanorm.Sqlite" Version="0.1.2" /><!-- Create something even better for multiple db engines, etc -->
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Migrations\"/>
-        <InternalsVisibleTo Include="EasyBlog.Tests.UITests"/>
+        <Folder Include="Migrations\" />
+        <InternalsVisibleTo Include="EasyBlog.Tests.UITests" />
     </ItemGroup>
 
 </Project>
