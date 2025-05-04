@@ -1,4 +1,4 @@
-namespace EasyBlog.Extensions;
+namespace EasyBlog.BusinessLayer.Extensions;
 
 static class ModelsMappingExtensions
 {
@@ -12,13 +12,13 @@ static class ModelsMappingExtensions
             ReadableUrl = entity.ReadableUrl
         };
 
-    public static PostListPageModel ToListViewModel(this PostsInputModel model, List<PostEntity> posts, int totalRecords) =>
+    public static PostListPageModel ToListViewModel(this PostsInputModel model, Posts posts) =>
         new()
         {
-            Posts = posts.Select(x => x.ToModel()).Where(x => x != null).ToList()!,
+            Posts = posts.PostList.Select(x => x.ToModel()).Where(x => x != null).ToList()!,
             PageNumber = model.PageNumber,
             PageSize = model.PageSize,
-            TotalRecords = totalRecords
+            TotalRecords = posts.Total
         };
 
     public static TagPageModel? ToModel(this TagEntity? entity) =>

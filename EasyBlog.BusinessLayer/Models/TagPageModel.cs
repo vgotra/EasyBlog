@@ -1,6 +1,6 @@
-namespace EasyBlog.Models;
+namespace EasyBlog.BusinessLayer.Models;
 
-class TagPageModel
+public class TagPageModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;

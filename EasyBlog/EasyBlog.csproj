@@ -19,12 +19,15 @@
     
     <ItemGroup>
         <PackageReference Include="RazorSlices" Version="0.9.1" />
-        <PackageReference Include="Nanorm.Sqlite" Version="0.1.2" /><!-- Create something even better for multiple db engines, etc -->
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Migrations\" />
         <InternalsVisibleTo Include="EasyBlog.Tests.UITests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyBlog.BusinessLayer\EasyBlog.BusinessLayer.csproj" />
     </ItemGroup>
 
 </Project>

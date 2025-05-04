@@ -1,9 +1,7 @@
-using Nanorm;
-
-namespace EasyBlog.DataAccess.Entities;
+namespace EasyBlog.DataAccessLayer.Sqlite.Entities;
 
 [DataRecordMapper]
-partial class TagEntity : Entity<Guid>
+public partial class TagEntity : Entity<Guid>
 {
     public string Name { get; set; } = string.Empty;
 

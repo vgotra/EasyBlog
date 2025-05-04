@@ -1,4 +1,4 @@
-namespace EasyBlog.Models;
+namespace EasyBlog.BusinessLayer.Models;
 
 public abstract class BasePageModel
 {

@@ -4,6 +4,7 @@ builder.WebHost.UseKestrelHttpsConfiguration();
 builder.Services.AddWebEncoders();
 builder.Services.Configure<EasyBlogOptions>(builder.Configuration.GetSection(EasyBlogOptions.ConfigurationSectionName));
 builder.Services.ConfigureDataAccessSqLite(builder.Configuration);
+builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureCaching();

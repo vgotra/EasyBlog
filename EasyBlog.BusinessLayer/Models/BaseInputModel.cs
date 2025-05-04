@@ -1,6 +1,6 @@
-namespace EasyBlog.Models;
+namespace EasyBlog.BusinessLayer.Models;
 
-abstract class BaseInputModel
+public abstract class BaseInputModel
 {
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 10;

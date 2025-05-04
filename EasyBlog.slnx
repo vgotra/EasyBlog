@@ -5,6 +5,8 @@
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
   </Folder>
+  <Project Path="EasyBlog.BusinessLayer\EasyBlog.BusinessLayer.csproj" Type="Classic C#" />
+  <Project Path="EasyBlog.DataAccessLayer.Sqlite\EasyBlog.DataAccessLayer.Sqlite.csproj" Type="Classic C#" />
   <Project Path="EasyBlog.Tests.UITests\EasyBlog.Tests.UITests.csproj" Type="Classic C#" />
   <Project Path="EasyBlog\EasyBlog.csproj" Type="Classic C#" />
 </Solution>

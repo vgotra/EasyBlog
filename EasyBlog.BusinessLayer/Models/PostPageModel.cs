@@ -1,4 +1,4 @@
-namespace EasyBlog.Models;
+namespace EasyBlog.BusinessLayer.Models;
 
 public class PostPageModel
 {
